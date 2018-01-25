@@ -24,7 +24,7 @@ namespace Ludus_Chip8
         public Chip8Cpu(Chip8 chip8Device)
         {
             this._chip8Device = chip8Device;
-            this._stack = new Stack<ushort>();
+            this._stack = new Stack<ushort>(Chip8Constants.STACK_SIZE);
             this._isRunning = false;
         }
 
@@ -38,8 +38,19 @@ namespace Ludus_Chip8
         {
             while (this._isRunning)
             {
-                
+                ushort opcode = this.ReadNextOpcode();
+
             }
+        }
+
+        private ushort ReadNextOpcode()
+        {
+            byte opcodePartOne = this._chip8Device.Memory.Get(this._chip8Device.RegisterBank.PC);
+            byte opcodePartTwo = this._chip8Device.Memory.Get(this._chip8Device.RegisterBank.PC++);
+
+            ushort opcode = (ushort)((opcodePartOne << 8) | opcodePartTwo);
+
+            return opcode;
         }
     }
 }
