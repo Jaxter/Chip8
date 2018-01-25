@@ -10,7 +10,7 @@ namespace Ludus_Chip8
 {
     public class Chip8Cpu
     {
-        private MemoryManager _memoryManager;
+        private Chip8 _chip8Device;
         private Stack<ushort> _stack;
         private ushort _pc;
         private ushort _i;
@@ -21,9 +21,9 @@ namespace Ludus_Chip8
 
         public Stack<ushort> Stack { get { return this._stack; } }
 
-        public Chip8Cpu()
+        public Chip8Cpu(Chip8 chip8Device)
         {
-            this._memoryManager = new MemoryManager();
+            this._chip8Device = chip8Device;
             this._stack = new Stack<ushort>();
             this._isRunning = false;
         }
@@ -34,7 +34,7 @@ namespace Ludus_Chip8
             this._i = 0;
         }
 
-        public void EmulateCpuLoop()
+        public void Cycle()
         {
             while (this._isRunning)
             {

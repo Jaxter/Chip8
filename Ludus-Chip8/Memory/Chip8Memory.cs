@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Ludus_Chip8.Memory
 {
-    public class MemoryManager
+    public class Chip8Memory
     {
+        private Chip8 _chip8Device;
         private byte[] _memoryBuffer;
 
-        public MemoryManager()
+        public Chip8Memory(Chip8 chip8Device)
         {
+            this._chip8Device = chip8Device;
             this._memoryBuffer = new byte[Chip8Constants.MEMORY_SIZE];
 
             this.InitialiseFontset();
