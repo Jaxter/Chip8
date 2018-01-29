@@ -12,9 +12,9 @@ using Ludus_Chip8;
 
 namespace Ludus_Chip8_Forms
 {
-    public partial class Form1 : Form
+    public partial class EmulatorForm : Form
     {
-        public Form1()
+        public EmulatorForm()
         {
             InitializeComponent();
         }

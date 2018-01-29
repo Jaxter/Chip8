@@ -13,12 +13,15 @@ namespace Ludus_Chip8.Cpu
 
         public ushort PC;
         public ushort I;
+        public sbyte DelayTimer;
+        public sbyte SoundTimer;
 
         public byte[] V { get { return this.V; } }
 
         public RegisterBank(Chip8 chip8Device)
         {
-            this._v = new byte[15];
+            this.PC = Chip8Constants.MEMORY_START_ADDRESS;
+            this._v = new byte[16];
             this._chip8Device = chip8Device;
         }
 

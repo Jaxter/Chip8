@@ -9,29 +9,29 @@ namespace Ludus_Chip8.Memory
     public class Chip8Memory
     {
         private Chip8 _chip8Device;
-        private byte[] _memoryBuffer;
+        private byte[] memory;
 
         public Chip8Memory(Chip8 chip8Device)
         {
             this._chip8Device = chip8Device;
-            this._memoryBuffer = new byte[Chip8Constants.MEMORY_SIZE];
+            this.memory = new byte[Chip8Constants.MEMORY_SIZE];
 
             this.InitialiseFontset();
         }
 
         public byte Get(ushort address)
         {
-            return this._memoryBuffer[address];
+            return this.memory[address];
         }
 
         public void LoadRom(byte[] romBuffer)
         {
-            romBuffer.CopyTo(_memoryBuffer, Chip8Constants.MEMORY_START_ADDRESS);
+            romBuffer.CopyTo(memory, Chip8Constants.MEMORY_START_ADDRESS);
         }
 
         private void InitialiseFontset()
         {
-            Chip8Constants.FONTSET.CopyTo(this._memoryBuffer, 0);
+            Chip8Constants.FONTSET.CopyTo(this.memory, 0);
         }
     }
 }

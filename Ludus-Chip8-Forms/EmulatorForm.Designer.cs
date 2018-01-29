@@ -1,6 +1,6 @@
 ﻿namespace Ludus_Chip8_Forms
 {
-    partial class Form1
+    partial class EmulatorForm
     {
         /// <summary>
         /// Required designer variable.

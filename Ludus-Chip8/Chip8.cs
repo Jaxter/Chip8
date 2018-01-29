@@ -25,10 +25,10 @@ namespace Ludus_Chip8
             this._registerBank = new RegisterBank(this);
         }
 
-        public void LoadRom(byte[] rom)
+        public void LoadRom(byte[] romBuffer)
         {
             // If a rom has already been loaded, we need to interrupt and reset the emulation loop here or else it could cause some problems.
-            this._memory.LoadRom(rom);
+            this._memory.LoadRom(romBuffer);
         }
     }
 }

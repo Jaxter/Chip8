@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ludus_Chip8.Memory;
+using Ludus_Chip8.Cpu.Opcodes;
 
 namespace Ludus_Chip8
 {
@@ -12,26 +13,17 @@ namespace Ludus_Chip8
     {
         private Chip8 _chip8Device;
         private Stack<ushort> _stack;
-        private ushort _pc;
-        private ushort _i;
+        private OpcodeParser _opcodeParser;
         private bool _isRunning;
-
-        public ushort PC { get { return this._pc; } set { this._pc = value; } }
-        public ushort I { get { return this._i; } set { this._i = value; } }
 
         public Stack<ushort> Stack { get { return this._stack; } }
 
         public Chip8Cpu(Chip8 chip8Device)
         {
             this._chip8Device = chip8Device;
+            this._opcodeParser = new OpcodeParser(this._chip8Device);
             this._stack = new Stack<ushort>(Chip8Constants.STACK_SIZE);
             this._isRunning = false;
-        }
-
-        public void Initialise()
-        {
-            this._pc = Chip8Constants.MEMORY_START_ADDRESS;
-            this._i = 0;
         }
 
         public void Cycle()
@@ -39,7 +31,9 @@ namespace Ludus_Chip8
             while (this._isRunning)
             {
                 ushort opcode = this.ReadNextOpcode();
+                Opcode parsedOpcode = this._opcodeParser.ParseOpcode(opcode);
 
+                parsedOpcode.Execute();
             }
         }
 
