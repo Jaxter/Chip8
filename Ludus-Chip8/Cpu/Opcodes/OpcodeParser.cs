@@ -29,9 +29,14 @@ namespace Ludus_Chip8.Cpu.Opcodes
         public Opcode ParseOpcode(ushort opcode)
         {
             byte opcodeIdentifier = (byte)(opcode & 0xF000 >> 8);
-            IOpcodeAction opcodeAction = this._opcodeActionsDictionary[opcodeIdentifier];
+            IOpcodeAction opcodeAction;
 
-            return new Opcode(opcodeIdentifier, opcode, opcodeAction);
+            if(this._opcodeActionsDictionary.TryGetValue(opcodeIdentifier, out opcodeAction))
+            {
+                return new Opcode(opcodeIdentifier, opcode, opcodeAction);
+            }
+
+            throw new Exception(String.Format("Failed to find opcode action for instruction {0:x4}", opcode.ToString()));
         }
     }
 }

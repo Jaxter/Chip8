@@ -40,9 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chip8Cpu.cs" />
-    <Compile Include="Chip8Instructions.cs" />
+    <Compile Include="Chip8.cs" />
+    <Compile Include="Chip8Constants.cs" />
+    <Compile Include="Cpu\Chip8Cpu.cs" />
+    <Compile Include="Cpu\Opcodes\Actions\CallOpcodeAction.cs" />
+    <Compile Include="Cpu\Opcodes\Actions\IOpcodeAction.cs" />
+    <Compile Include="Cpu\Opcodes\Actions\JpOpcodeAction.cs" />
+    <Compile Include="Cpu\Opcodes\Actions\LdOpcodeAction.cs" />
+    <Compile Include="Cpu\Opcodes\Actions\Se2OpcodeAction.cs" />
+    <Compile Include="Cpu\Opcodes\Actions\SeOpcodeAction.cs" />
+    <Compile Include="Cpu\Opcodes\Actions\SneOpcodeAction.cs" />
+    <Compile Include="Cpu\Opcodes\Opcode.cs" />
+    <Compile Include="Cpu\Opcodes\OpcodeParser.cs" />
+    <Compile Include="Cpu\Opcodes\Actions\SysOpcodeAction.cs" />
+    <Compile Include="Cpu\RegisterBank.cs" />
+    <Compile Include="Display\Chip8Display.cs" />
+    <Compile Include="Memory\Chip8Memory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
