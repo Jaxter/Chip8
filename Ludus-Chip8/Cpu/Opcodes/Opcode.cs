@@ -9,23 +9,16 @@ namespace Ludus_Chip8.Cpu.Opcodes
 {
     public class Opcode
     {
-        private ushort _opcodeIdentifier;
-        private ushort _opcode;
-        private IOpcodeAction _opcodeAction;
+        private ushort _identifier;
+        private ushort value;
 
-        public ushort OpcodeIdentifier { get { return this._opcodeIdentifier; } }
-        public ushort OpcodeValue { get { return this._opcode; } }
+        public ushort Identifier { get { return this._identifier; } }
+        public ushort Value { get { return this.value; } }
 
-        public Opcode(ushort opcodeIdentifier, ushort opcode, IOpcodeAction opcodeAction)
+        public Opcode(ushort opcodeIdentifier, ushort opcode)
         {
-            this._opcodeIdentifier = opcodeIdentifier;
-            this._opcode = opcode;
-            this._opcodeAction = opcodeAction;
-        }
-
-        public void Execute()
-        {
-            this._opcodeAction.Execute(this._opcode);
+            this._identifier = opcodeIdentifier;
+            this.value = opcode;
         }
     }
 }
