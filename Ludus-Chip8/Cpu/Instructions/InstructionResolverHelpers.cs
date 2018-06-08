@@ -34,21 +34,21 @@ namespace Ludus_Chip8.Cpu.Instructions
                 case 0x00:
                     return new LdInstruction2();
                 case 0x01:
-                    throw new NotImplementedException();
+                    return new BitwiseOrInstruction();
                 case 0x02:
-                    throw new NotImplementedException();
+                    return new BitwiseAndInstruction();
                 case 0x03:
-                    throw new NotImplementedException();
+                    return new BitwiseOrInstruction();
                 case 0x04:
-                    throw new NotImplementedException();
+                    return new AddInstruction2();
                 case 0x05:
-                    throw new NotImplementedException();
+                    return new SubInstruction();
                 case 0x06:
-                    throw new NotImplementedException();
+                    return new ShrInstruction();
                 case 0x07:
-                    throw new NotImplementedException();
+                    return new SubnInstruction();
                 case 0x0E:
-                    throw new NotImplementedException();
+                    return new ShlInstruction();
             }
 
             throw new Exception(String.Format("Failed to find instruction for {0:x4}", opcode.ToString()));

@@ -10,9 +10,11 @@ namespace Ludus_Chip8.Display
     public class Chip8Display
     {
         private BitArray _display;
+        private Chip8 _device;
 
-        public Chip8Display()
+        public Chip8Display(Chip8 device)
         {
+            this._device = device;
             this._display = new BitArray(Chip8Constants.SCREEN_SIZE);
         }
 
