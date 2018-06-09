@@ -11,10 +11,9 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
     {
         public void Execute(Chip8 chip8Device, Opcode opcode)
         {
-            ushort currentAddress = chip8Device.RegisterBank.PC;
-            ushort callAddress = (ushort)(opcode.Value & 0x0FFF);
+            ushort callAddress = (ushort)(opcode.Value & 0xFFF);
 
-            chip8Device.Cpu.Stack.Push(currentAddress);
+            chip8Device.Cpu.Stack.Push(chip8Device.RegisterBank.PC);
             chip8Device.RegisterBank.PC = callAddress;
         }
     }

@@ -26,23 +26,18 @@ namespace Ludus_Chip8
             this._isRunning = false;
         }
 
-        public void Cycle()
+        public void ProcessNextOpcode()
         {
-            while (this._isRunning)
-            {
-                ushort opcode = this.ReadNextOpcode();
-                Opcode parsedOpcode = this._opcodeParser.ParseOpcode(opcode);
-
-                parsedOpcode.Execute();
-            }
+            ushort opcode = this.ReadNextOpcode();
+            this._opcodeParser.ParseOpcode(opcode);
         }
 
         private ushort ReadNextOpcode()
         {
-            byte opcodePartOne = this._chip8Device.Memory.Get(this._chip8Device.RegisterBank.PC);
-            byte opcodePartTwo = this._chip8Device.Memory.Get(this._chip8Device.RegisterBank.PC++);
+            byte opcodePartOne = this._chip8Device.Memory.Get(this._chip8Device.RegisterBank.PC++);
+            byte opcodePartTwo = this._chip8Device.Memory.Get((ushort)(this._chip8Device.RegisterBank.PC++));
 
-            ushort opcode = (ushort)((opcodePartOne << 8) | opcodePartTwo);
+            ushort opcode = (ushort)((opcodePartOne << 8) + opcodePartTwo);
 
             return opcode;
         }

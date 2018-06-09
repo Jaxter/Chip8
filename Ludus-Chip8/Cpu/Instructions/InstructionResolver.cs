@@ -25,8 +25,8 @@ namespace Ludus_Chip8.Cpu.Opcodes
             this._cpuInstructionResolvers[0x9] = ((i) => new SneInstruction2());
             this._cpuInstructionResolvers[0xA] = ((i) => new LdInstruction3());
             this._cpuInstructionResolvers[0xB] = ((i) => new JpInstruction2());
-            this._cpuInstructionResolvers[0xC] = null;
-            this._cpuInstructionResolvers[0xD] = null;
+            this._cpuInstructionResolvers[0xC] = ((i) => new RndInstruction());
+            this._cpuInstructionResolvers[0xD] = ((i) => new DrwInstruction());
             this._cpuInstructionResolvers[0xE] = InstructionResolverHelpers.Resolve0xE;
             this._cpuInstructionResolvers[0xF] = InstructionResolverHelpers.Resolve0xF;
            
@@ -35,7 +35,7 @@ namespace Ludus_Chip8.Cpu.Opcodes
 
         public ICpuInstruction ResolveOpcode(ushort opcode)
         {
-            byte identifier = (byte)(opcode & 0xF000 >> 8);
+            byte identifier = (byte)((opcode & 0xF000) >> 12);
 
             return this._cpuInstructionResolvers[identifier].Invoke(opcode);
         }

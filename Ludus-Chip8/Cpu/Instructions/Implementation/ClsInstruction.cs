@@ -11,7 +11,7 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
     {
         public void Execute(Chip8 chip8Device, Opcode opcode)
         {
-            throw new NotImplementedException();
+            chip8Device.Chip8Display.Reset();
         }
     }
 }

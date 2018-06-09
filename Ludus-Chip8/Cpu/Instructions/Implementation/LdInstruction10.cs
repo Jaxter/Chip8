@@ -8,20 +8,22 @@ using Ludus_Chip8.Cpu.Opcodes;
 namespace Ludus_Chip8.Cpu.Instructions.Implementation
 {
     /// <summary>
-    /// 3xkk - SE Vx, byte
-    /// Skip next instruction if Vx = kk.
+    /// Fx55 - LD [I], Vx
+    /// Store registers V0 through Vx in memory starting at location I.
     /// </summary>
-    public class SeInstruction : ICpuInstruction
+    public class LdInstruction10 : ICpuInstruction
     {
         public void Execute(Chip8 chip8Device, Opcode opcode)
         {
             byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
-            byte valueToCompare = (byte)(opcode.Value & 0x00FF);
 
-            byte registerXValue = chip8Device.RegisterBank.V[registerX];
+            for(byte j = 0; j < registerX; j++)
+            {
+                byte value = chip8Device.RegisterBank.V[j];
+                ushort i = (ushort)(chip8Device.RegisterBank.I + j);
 
-            if (registerXValue == valueToCompare)
-                chip8Device.RegisterBank.PC += 2;
+                chip8Device.Memory.Set(i, value);
+            }
         }
     }
 }

@@ -29,39 +29,85 @@
         private void InitializeComponent()
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnLoadRom = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openRomMenuStripItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameCanvas = new System.Windows.Forms.PictureBox();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gameCanvas)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // btnLoadRom
+            // menuStrip1
             // 
-            this.btnLoadRom.Location = new System.Drawing.Point(253, 269);
-            this.btnLoadRom.Name = "btnLoadRom";
-            this.btnLoadRom.Size = new System.Drawing.Size(75, 23);
-            this.btnLoadRom.TabIndex = 0;
-            this.btnLoadRom.Text = "Load Rom";
-            this.btnLoadRom.UseVisualStyleBackColor = true;
-            this.btnLoadRom.Click += new System.EventHandler(this.btnLoadRom_Click);
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(427, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // Form1
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openRomMenuStripItem,
+            this.resetToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.toolStripMenuItem1.Text = "File";
+            // 
+            // openRomMenuStripItem
+            // 
+            this.openRomMenuStripItem.Name = "openRomMenuStripItem";
+            this.openRomMenuStripItem.Size = new System.Drawing.Size(180, 22);
+            this.openRomMenuStripItem.Text = "Open ROM";
+            this.openRomMenuStripItem.Click += new System.EventHandler(this.openRom_Click);
+            // 
+            // resetToolStripMenuItem
+            // 
+            this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetToolStripMenuItem.Text = "Reset";
+            // 
+            // gameCanvas
+            // 
+            this.gameCanvas.Location = new System.Drawing.Point(0, 27);
+            this.gameCanvas.Name = "gameCanvas";
+            this.gameCanvas.Size = new System.Drawing.Size(427, 303);
+            this.gameCanvas.TabIndex = 1;
+            this.gameCanvas.TabStop = false;
+            // 
+            // EmulatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 304);
-            this.Controls.Add(this.btnLoadRom);
-            this.Name = "Form1";
+            this.ClientSize = new System.Drawing.Size(427, 417);
+            this.Controls.Add(this.gameCanvas);
+            this.Controls.Add(this.menuStrip1);
+            this.Name = "EmulatorForm";
             this.Text = "Ludus - CHIP-8 Emulator";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gameCanvas)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button btnLoadRom;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem openRomMenuStripItem;
+        private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
+        private System.Windows.Forms.PictureBox gameCanvas;
     }
 }
 

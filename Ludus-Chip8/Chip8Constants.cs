@@ -12,6 +12,7 @@ namespace Ludus_Chip8
         public const ushort MEMORY_START_ADDRESS = 0x200;
         public const ushort SCREEN_SIZE = 64 * 32;
         public const ushort STACK_SIZE = 16;
+        public const ushort KEYS = 16;
         public static readonly byte[] FONTSET = {
               0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
               0x20, 0x60, 0x20, 0x20, 0x70, // 1
@@ -30,5 +31,6 @@ namespace Ludus_Chip8
               0xF0, 0x80, 0xF0, 0x80, 0xF0, // E
               0xF0, 0x80, 0xF0, 0x80, 0x80  // F
         };
+
 }
 }

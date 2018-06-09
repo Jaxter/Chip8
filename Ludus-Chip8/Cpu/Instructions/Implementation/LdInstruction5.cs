@@ -8,20 +8,20 @@ using Ludus_Chip8.Cpu.Opcodes;
 namespace Ludus_Chip8.Cpu.Instructions.Implementation
 {
     /// <summary>
-    /// 3xkk - SE Vx, byte
-    /// Skip next instruction if Vx = kk.
+    /// Fx0A - LD Vx, K
+    /// Wait for a key press, store the value of the key in Vx.
     /// </summary>
-    public class SeInstruction : ICpuInstruction
+    public class LdInstruction5 : ICpuInstruction
     {
         public void Execute(Chip8 chip8Device, Opcode opcode)
         {
             byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
-            byte valueToCompare = (byte)(opcode.Value & 0x00FF);
 
-            byte registerXValue = chip8Device.RegisterBank.V[registerX];
+            while (!chip8Device.InputManager.KeyPressed) {}
 
-            if (registerXValue == valueToCompare)
-                chip8Device.RegisterBank.PC += 2;
+            chip8Device.RegisterBank.V[registerX] = chip8Device.InputManager.KeyPressedValue;
+
+            chip8Device.InputManager.ResetKeyPressed();
         }
     }
 }

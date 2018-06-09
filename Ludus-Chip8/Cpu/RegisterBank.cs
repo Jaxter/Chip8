@@ -16,7 +16,7 @@ namespace Ludus_Chip8.Cpu
         public sbyte DelayTimer;
         public sbyte SoundTimer;
 
-        public byte[] V { get { return this.V; } }
+        public byte[] V { get { return this._v; } }
 
         public RegisterBank(Chip8 chip8Device)
         {

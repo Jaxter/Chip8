@@ -8,22 +8,18 @@ using Ludus_Chip8.Cpu.Opcodes;
 namespace Ludus_Chip8.Cpu.Instructions.Implementation
 {
     /// <summary>
-    /// 8xy1 - OR Vx, Vy
-    /// Set Vx = Vx OR Vy.
+    /// ExA1 - SKNP Vx
+    /// Skip next instruction if key with the value of Vx is not pressed.
     /// </summary>
-    public class BitwiseOrInstruction : ICpuInstruction
+    public class SkpNpInstruction : ICpuInstruction
     {
         public void Execute(Chip8 chip8Device, Opcode opcode)
         {
             byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
-            byte registerY = (byte)(opcode.Value & 0x00F0 >> 4);
-
             byte valueX = chip8Device.RegisterBank.V[registerX];
-            byte valueY = chip8Device.RegisterBank.V[registerY];
 
-            byte newValue = (byte)(valueX | valueY);
-
-            chip8Device.RegisterBank.V[registerX] = newValue;
+            if (!chip8Device.InputManager.GetKeyState(valueX))
+                chip8Device.RegisterBank.PC += 2;
         }
     }
 }

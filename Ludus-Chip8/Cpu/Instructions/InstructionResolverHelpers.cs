@@ -13,11 +13,11 @@ namespace Ludus_Chip8.Cpu.Instructions
         {
             byte command = (byte)(opcode & 0x00FF);
 
-            if(command == 0xE0)
+            if(opcode == 0x00E0)
             {
                 return new ClsInstruction();
             }
-            else if(command == 0xEE)
+            else if(opcode == 0x00EE)
             {
                 return new RetInstruction();
             }
@@ -61,12 +61,12 @@ namespace Ludus_Chip8.Cpu.Instructions
             switch (command)
             {
                 case 0x009E:
-                    throw new NotImplementedException();
+                    return new SkpInstruction();
                 case 0x00A1:
-                    throw new NotImplementedException();
+                    return new SkpNpInstruction();
             }
 
-            return null;
+            throw new Exception(String.Format("Failed to find instruction for {0:x4}", opcode.ToString()));
         }
 
         public static ICpuInstruction Resolve0xF(ushort opcode)
@@ -76,24 +76,26 @@ namespace Ludus_Chip8.Cpu.Instructions
             switch (command)
             {
                 case 0x0007:
-                    throw new NotImplementedException();
+                    return new LdInstruction4();
                 case 0x000A:
-                    throw new NotImplementedException();
+                    return new LdInstruction5();
                 case 0x0015:
-                    throw new NotImplementedException();
+                    return new LdInstruction6();
                 case 0x0018:
-                    throw new NotImplementedException();
+                    return new LdInstruction7();
                 case 0x001E:
-                    throw new NotImplementedException();
+                    return new AddInstruction3();
                 case 0x0029:
-                    throw new NotImplementedException();
+                    return new LdInstruction8();
                 case 0x0033:
-                    throw new NotImplementedException();
+                    return new LdInstruction9();
                 case 0x0055:
-                    throw new NotImplementedException();
+                    return new LdInstruction10();
                 case 0x65:
-                    throw new NotImplementedException();
+                    return new LdInstruction11();
             }
+
+            throw new Exception(String.Format("Failed to find instruction for {0:x4}", opcode.ToString()));
         }
     }
 }

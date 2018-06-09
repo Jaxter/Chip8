@@ -7,18 +7,17 @@ using Ludus_Chip8.Cpu.Opcodes;
 
 namespace Ludus_Chip8.Cpu.Instructions.Implementation
 {
-    public class ShlInstruction : ICpuInstruction
+    /// <summary>
+    /// Fx15 - LD DT, Vx
+    /// Set delay timer = Vx.
+    /// </summary>
+    public class LdInstruction6 : ICpuInstruction
     {
         public void Execute(Chip8 chip8Device, Opcode opcode)
         {
             byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
-            byte valueX = chip8Device.RegisterBank.V[registerX];
 
-            bool carry = ((valueX >> 8) & 1) != 0;
-
-            chip8Device.RegisterBank.V[0xF] = carry ? (byte)1 : (byte)0;
-
-            chip8Device.RegisterBank.V[registerX] *= 2;
+            chip8Device.DelayTimer = chip8Device.RegisterBank.V[registerX];
         }
     }
 }
