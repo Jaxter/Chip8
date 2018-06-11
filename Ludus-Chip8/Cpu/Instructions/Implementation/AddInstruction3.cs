@@ -15,10 +15,9 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
     {
         public void Execute(Chip8 chip8Device, Opcode opcode)
         {
-            byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
-            byte newValue = (byte)(chip8Device.RegisterBank.I + chip8Device.RegisterBank.V[registerX]);
+            chip8Device.RegisterBank.I += (chip8Device.RegisterBank.V[((opcode.Value & 0x0F00) >> 8)]);
 
-            chip8Device.RegisterBank.I = newValue;
+            int i = 0;
         }
     }
 }

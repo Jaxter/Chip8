@@ -10,7 +10,9 @@ namespace Ludus_Chip8
     {
         public const ushort MEMORY_SIZE = 0xFFF;
         public const ushort MEMORY_START_ADDRESS = 0x200;
-        public const ushort SCREEN_SIZE = 64 * 32;
+        public const ushort SCREEN_WIDTH = 64;
+        public const ushort SCREEN_HEIGHT = 32;
+        public const ushort SCREEN_SIZE = SCREEN_WIDTH * SCREEN_HEIGHT;
         public const ushort STACK_SIZE = 16;
         public const ushort KEYS = 16;
         public static readonly byte[] FONTSET = {

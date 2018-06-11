@@ -19,7 +19,7 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
 
             while (!chip8Device.InputManager.KeyPressed) {}
 
-            chip8Device.RegisterBank.V[registerX] = chip8Device.InputManager.KeyPressedValue;
+            chip8Device.RegisterBank.V[registerX] = (byte)chip8Device.InputManager.KeyPressedValue;
 
             chip8Device.InputManager.ResetKeyPressed();
         }

@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ludus_Chip8
@@ -49,16 +50,16 @@ namespace Ludus_Chip8
 
         public void Cycle()
         {
-            while (!_exit)
-            {
-                this._cpu.ProcessNextOpcode();
+            this._cpu.ProcessNextOpcode();
+        }
 
-                if(this._delayTimer > 0)
-                    this._delayTimer--;
+        public void Tick()
+        {
+            if (this._delayTimer > 0)
+                this._delayTimer--;
 
-                if (this._soundTimer > 0)
-                    this._soundTimer--;
-            }
+            if (this._soundTimer > 0)
+                this._soundTimer--;
         }
 
         public void LoadRom(byte[] romBuffer)

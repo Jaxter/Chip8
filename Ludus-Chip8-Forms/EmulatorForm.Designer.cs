@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openRomMenuStripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameCanvas = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gameCanvas)).BeginInit();
             this.SuspendLayout();
@@ -65,14 +67,14 @@
             // openRomMenuStripItem
             // 
             this.openRomMenuStripItem.Name = "openRomMenuStripItem";
-            this.openRomMenuStripItem.Size = new System.Drawing.Size(180, 22);
+            this.openRomMenuStripItem.Size = new System.Drawing.Size(133, 22);
             this.openRomMenuStripItem.Text = "Open ROM";
             this.openRomMenuStripItem.Click += new System.EventHandler(this.openRom_Click);
             // 
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.resetToolStripMenuItem.Text = "Reset";
             // 
             // gameCanvas
@@ -82,6 +84,11 @@
             this.gameCanvas.Size = new System.Drawing.Size(427, 303);
             this.gameCanvas.TabIndex = 1;
             this.gameCanvas.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 16;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // EmulatorForm
             // 
@@ -108,6 +115,7 @@
         private System.Windows.Forms.ToolStripMenuItem openRomMenuStripItem;
         private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
         private System.Windows.Forms.PictureBox gameCanvas;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

@@ -17,6 +17,10 @@ namespace Ludus_Chip8_Forms
     public partial class EmulatorForm : Form
     {
         private Chip8 _chip8;
+        private Bitmap _bitmap;
+        private Graphics _graphicsDisplay;
+        private int _xMultiplier;
+        private int _yMultiplier;
 
         public EmulatorForm()
         {
@@ -24,12 +28,15 @@ namespace Ludus_Chip8_Forms
 
             this._chip8 = new Chip8();
             this._chip8.Chip8Display.SetUpdateGraphicsAction(this.UpdateDisplay);
+            this._xMultiplier = (gameCanvas.ClientRectangle.Width / Chip8Constants.SCREEN_WIDTH);
+            this._yMultiplier = (gameCanvas.ClientRectangle.Height / Chip8Constants.SCREEN_HEIGHT);
 
-            Bitmap test = new Bitmap(gameCanvas.ClientRectangle.Width, gameCanvas.ClientRectangle.Height);
-            using (Graphics graphics = Graphics.FromImage(test))
-            {
-                graphics.Clear(Color.Black);
-            }
+
+            this._bitmap = new Bitmap(gameCanvas.ClientRectangle.Width, gameCanvas.ClientRectangle.Height);
+            this._graphicsDisplay = Graphics.FromImage(this._bitmap);
+            //this._graphicsDisplay.Clear(Color.Black);
+
+            gameCanvas.Image = this._bitmap;
 
             this.KeyDown += EmulatorForm_KeyDown;
             this.KeyUp += EmulatorForm_KeyUp;
@@ -129,7 +136,7 @@ namespace Ludus_Chip8_Forms
             }
         }
 
-        private void UpdateDisplay(BitArray bitArray)
+        private void UpdateDisplay(bool[,] bitArray)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -137,19 +144,35 @@ namespace Ludus_Chip8_Forms
             });
         }
 
-        private void UpdateGameCanvas(BitArray bitArray)
+        private void UpdateGameCanvas(bool[,] bitArray)
         {
-            byte[] bytes = new byte[((bitArray.Length - 1) / 8) + 1];
-            bitArray.CopyTo(bytes, 0);
+            this._graphicsDisplay.Clear(Color.Black);
 
-            Image image;
-
-            using (MemoryStream memoryStream = new MemoryStream(bytes))
+            for (int y = 0; y < Chip8Constants.SCREEN_HEIGHT; y++)
             {
-                image = Bitmap.FromStream(memoryStream);
+                for (int x = 0; x < Chip8Constants.SCREEN_WIDTH; x++)
+                {
+                    bool positionSet = bitArray[x, y];
+                    Color pixelColour = positionSet ? Color.White : Color.Black;
+
+                    this._graphicsDisplay.FillRectangle(new SolidBrush(pixelColour), (x * this._xMultiplier), (y * this._yMultiplier),
+                        this._xMultiplier, this._yMultiplier);
+                }
             }
 
-            this.gameCanvas.Image = image;
+            //for(int i = 0; i < bitArray.Length; i++)
+            //{
+            //    int y = i / Chip8Constants.SCREEN_WIDTH;
+            //    int x = i - y * Chip8Constants.SCREEN_WIDTH;
+
+            //    bool positionSet = bitArray.Get(i);
+            //    Color pixelColour = positionSet ? Color.White : Color.Black;
+
+            //    this._graphicsDisplay.FillRectangle(new SolidBrush(pixelColour), (x * this._xMultiplier), (y * this._yMultiplier),
+            //        this._xMultiplier, this._yMultiplier);
+            //}
+
+            gameCanvas.Image = this._bitmap;
         }
 
         private void openRom_Click(object sender, EventArgs e)
@@ -169,9 +192,17 @@ namespace Ludus_Chip8_Forms
 
                     this._chip8.LoadRom(romFile);
 
-                    new Thread(() => this._chip8.Start()).Start();
+                    timer1.Enabled = true;
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 50; i++) _chip8.Cycle();
+
+            _chip8.Tick();
+            _chip8.Chip8Display.UpdateDisplay();
         }
     }
 }

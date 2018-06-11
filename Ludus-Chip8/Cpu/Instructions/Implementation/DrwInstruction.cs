@@ -18,33 +18,30 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
             byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
             byte registerY = (byte)((opcode.Value & 0x00F0) >> 4);
 
-            byte posX = chip8Device.RegisterBank.V[registerX];
-            byte posY = chip8Device.RegisterBank.V[registerY];
+            byte x = chip8Device.RegisterBank.V[registerX];
+            byte y = chip8Device.RegisterBank.V[registerY];
 
-            byte spriteLength = (byte)(opcode.Value & 0x000F);
+            byte n = (byte)(opcode.Value & 0x000F);
 
-            for(int y = 0; y < spriteLength; y++)
+            chip8Device.RegisterBank.V[0xF] = 0;
+
+            for(int height = 0; height < n; height++)
             {
-                byte lineData = chip8Device.Memory.Get((ushort)(chip8Device.RegisterBank.I + y));
+                byte spriteData = chip8Device.Memory.Get((ushort)(chip8Device.RegisterBank.I + height));
 
-                for(int x = 0; x < 8; x++)
+                for(int width = 0; width < 8; width++)
                 {
-                    if((lineData & (0x80 >> x)) != 0)
+                    if((spriteData & (0x80 >> width)) != 0)
                     {
-                        int position = posX + (posY * 64);
-                        bool positionBitSet = chip8Device.Chip8Display.Get(position);
+                        ushort drawX = (ushort)((x + width) % 64);
+                        ushort drawY = (ushort)((y + height) % 32);
 
-                        chip8Device.RegisterBank.V[0xF] = positionBitSet ? (byte)1 : (byte)0;
-
-                        chip8Device.Chip8Display.SetPixelState(position, positionBitSet ^ true);
-
-                        if (positionBitSet)
+                        if(chip8Device.Chip8Display.Display[drawX, drawY])
                         {
-                            int i = 0;
-                        } else
-                        {
-                            int i = 0;
+                            chip8Device.RegisterBank.V[0xF] = 1;
                         }
+
+                        chip8Device.Chip8Display.Display[drawX, drawY] ^= true;
                     }
                 }
             }

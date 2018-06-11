@@ -11,15 +11,15 @@ namespace Ludus_Chip8.Input
     {
         private BitArray _keys;
         private bool _keyPressed;
-        private byte _keyPressedValue;
+        private int _keyPressedValue;
 
-        public bool KeyPressed { get => _keyPressed; }
-        public byte KeyPressedValue { get => _keyPressedValue; }
+        public bool KeyPressed { get => _keyPressedValue > -1; }
+        public int KeyPressedValue { get => this._keyPressedValue; }
 
         public InputManager()
         {
             this._keys = new BitArray(Chip8Constants.KEYS);
-            this._keyPressedValue = 0;
+            this._keyPressedValue = -1;
             this._keyPressed = false;
         }
 
@@ -28,15 +28,17 @@ namespace Ludus_Chip8.Input
             return this._keys.Get(key);
         }
 
-        public void SetKey(int key, bool value)
+        public void SetKey(byte key, bool value)
         {
+            if(value)
+                this._keyPressedValue = key;
+
             this._keys.Set(key, value);
         }
 
         public void ResetKeyPressed()
         {
-            this._keyPressed = false;
-            this._keyPressedValue = 0;
+            this._keyPressedValue = -1;
         }
     }
 }
