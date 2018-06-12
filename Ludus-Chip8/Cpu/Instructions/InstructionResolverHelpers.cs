@@ -38,7 +38,7 @@ namespace Ludus_Chip8.Cpu.Instructions
                 case 0x02:
                     return new BitwiseAndInstruction();
                 case 0x03:
-                    return new BitwiseOrInstruction();
+                    return new BitwiseExclusiveOrInstruction();
                 case 0x04:
                     return new AddInstruction2();
                 case 0x05:

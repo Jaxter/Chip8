@@ -18,13 +18,9 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
             byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
             byte valueX = chip8Device.RegisterBank.V[registerX];
 
-            bool carry = ((valueX >> 1) & 1) != 0;
+            chip8Device.RegisterBank.V[0xF] = (byte)(valueX & 0x01);
 
-            chip8Device.RegisterBank.V[0xF] = carry ? (byte)1 : (byte)0;
-
-            valueX /= 2;
-
-            chip8Device.RegisterBank.V[registerX] = valueX;
+            chip8Device.RegisterBank.V[registerX] = (byte)(valueX >> 1);
         }
     }
 }

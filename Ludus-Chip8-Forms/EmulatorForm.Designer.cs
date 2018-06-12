@@ -51,7 +51,7 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(427, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1015, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -81,7 +81,7 @@
             // 
             this.gameCanvas.Location = new System.Drawing.Point(0, 27);
             this.gameCanvas.Name = "gameCanvas";
-            this.gameCanvas.Size = new System.Drawing.Size(427, 303);
+            this.gameCanvas.Size = new System.Drawing.Size(960, 720);
             this.gameCanvas.TabIndex = 1;
             this.gameCanvas.TabStop = false;
             // 
@@ -94,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 417);
+            this.ClientSize = new System.Drawing.Size(1015, 769);
             this.Controls.Add(this.gameCanvas);
             this.Controls.Add(this.menuStrip1);
             this.Name = "EmulatorForm";

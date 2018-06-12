@@ -23,7 +23,7 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
 
             byte n = (byte)(opcode.Value & 0x000F);
 
-            chip8Device.RegisterBank.V[0xF] = 0;
+            chip8Device.RegisterBank.V[0xF] = 0x0;
 
             for(int height = 0; height < n; height++)
             {
@@ -31,12 +31,13 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
 
                 for(int width = 0; width < 8; width++)
                 {
-                    if((spriteData & (0x80 >> width)) != 0)
+
+                    if ((spriteData & (0x80 >> width)) != 0)
                     {
                         ushort drawX = (ushort)((x + width) % 64);
                         ushort drawY = (ushort)((y + height) % 32);
 
-                        if(chip8Device.Chip8Display.Display[drawX, drawY])
+                        if (chip8Device.Chip8Display.Display[drawX, drawY])
                         {
                             chip8Device.RegisterBank.V[0xF] = 1;
                         }
@@ -45,8 +46,6 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
                     }
                 }
             }
-
-            chip8Device.Chip8Display.UpdateDisplay();
         }
     }
 }

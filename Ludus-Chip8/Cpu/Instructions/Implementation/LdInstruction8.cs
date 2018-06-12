@@ -17,7 +17,7 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
         {
             byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
 
-            chip8Device.RegisterBank.I = chip8Device.RegisterBank.V[registerX];
+            chip8Device.RegisterBank.I =(ushort)(chip8Device.RegisterBank.V[registerX] * 5);
         }
     }
 }

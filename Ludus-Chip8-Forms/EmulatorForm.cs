@@ -160,18 +160,6 @@ namespace Ludus_Chip8_Forms
                 }
             }
 
-            //for(int i = 0; i < bitArray.Length; i++)
-            //{
-            //    int y = i / Chip8Constants.SCREEN_WIDTH;
-            //    int x = i - y * Chip8Constants.SCREEN_WIDTH;
-
-            //    bool positionSet = bitArray.Get(i);
-            //    Color pixelColour = positionSet ? Color.White : Color.Black;
-
-            //    this._graphicsDisplay.FillRectangle(new SolidBrush(pixelColour), (x * this._xMultiplier), (y * this._yMultiplier),
-            //        this._xMultiplier, this._yMultiplier);
-            //}
-
             gameCanvas.Image = this._bitmap;
         }
 
@@ -199,7 +187,10 @@ namespace Ludus_Chip8_Forms
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < 50; i++) _chip8.Cycle();
+            for (int i = 0; i < 50; i++)
+            {
+                _chip8.Cycle();
+            }
 
             _chip8.Tick();
             _chip8.Chip8Display.UpdateDisplay();

@@ -17,11 +17,16 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
         {
             byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
 
-            while (!chip8Device.InputManager.KeyPressed) {}
+            if (chip8Device.InputManager.KeyPressed)
+            {
+                chip8Device.RegisterBank.V[registerX] = (byte)chip8Device.InputManager.KeyPressedValue;
 
-            chip8Device.RegisterBank.V[registerX] = (byte)chip8Device.InputManager.KeyPressedValue;
-
-            chip8Device.InputManager.ResetKeyPressed();
+                chip8Device.InputManager.ResetKeyPressed();
+            }
+            else
+            {
+                chip8Device.RegisterBank.PC -= 2;
+            }
         }
     }
 }

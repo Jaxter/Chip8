@@ -23,6 +23,12 @@ namespace Ludus_Chip8.Cpu.Opcodes
 
             Opcode opcode = new Opcode(opcodeIdentifier, opcodeValue);
 
+            if (opcode.Value == 41949)
+            {
+                int i = 0;
+            }
+                
+
             this._instructionResolver.ResolveOpcode(opcode.Value).Execute(this._chip8Device, opcode);
         }
     }

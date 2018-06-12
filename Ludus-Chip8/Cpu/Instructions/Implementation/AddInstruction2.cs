@@ -21,7 +21,7 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
             byte valueX = chip8Device.RegisterBank.V[registerX];
             byte valueY = chip8Device.RegisterBank.V[registerY];
 
-            byte newValue = (byte)(((ushort)(valueX + valueY)) & 0xFF);
+            byte newValue = (byte)(((ushort)(valueX + valueY)));
 
             chip8Device.RegisterBank.V[0xF] = (newValue > 255) ? (byte)1 : (byte)0;
             chip8Device.RegisterBank.V[registerX] = newValue;

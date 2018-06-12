@@ -28,12 +28,24 @@ namespace Ludus_Chip8
 
         public void ProcessNextOpcode()
         {
+            if (this._chip8Device.RegisterBank.V[0xF] == 1)
+            {
+                int y = 0;
+            }
+
             ushort opcode = this.ReadNextOpcode();
             this._opcodeParser.ParseOpcode(opcode);
+
+
         }
 
         private ushort ReadNextOpcode()
         {
+            if(this._chip8Device.RegisterBank.PC == 923)
+            {
+                int z = 0;
+            }
+
             byte opcodePartOne = this._chip8Device.Memory.Get(this._chip8Device.RegisterBank.PC++);
             byte opcodePartTwo = this._chip8Device.Memory.Get((ushort)(this._chip8Device.RegisterBank.PC++));
 

@@ -30,7 +30,6 @@ namespace Ludus_Chip8.Display
 
         public void UpdateDisplay()
         {
-            if(this._drawFlag)
             this._updateGraphicsAction.Invoke(this._display);
         }
 

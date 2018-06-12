@@ -13,7 +13,7 @@ namespace Ludus_Chip8.Cpu.Instructions.Implementation
         {
             byte registerX = (byte)((opcode.Value & 0x0F00) >> 8);
 
-            for (byte j = 0; j < registerX; j++)
+            for (byte j = 0; j <= registerX; j++)
             {
                 ushort i = (ushort)(chip8Device.RegisterBank.I + j);
 
