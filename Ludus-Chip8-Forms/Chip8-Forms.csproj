@@ -79,9 +79,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ludus-Chip8\Ludus-Chip8.csproj">
+    <ProjectReference Include="..\Ludus-Chip8\Chip8.csproj">
       <Project>{77812d61-fcaa-4796-a4c8-3ccee6442001}</Project>
-      <Name>Ludus-Chip8</Name>
+      <Name>Chip8</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

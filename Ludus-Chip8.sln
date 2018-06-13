@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ludus-Chip8", "Ludus-Chip8\Ludus-Chip8.csproj", "{77812D61-FCAA-4796-A4C8-3CCEE6442001}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chip8", "Ludus-Chip8\Chip8.csproj", "{77812D61-FCAA-4796-A4C8-3CCEE6442001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ludus-Chip8-Forms", "Ludus-Chip8-Forms\Ludus-Chip8-Forms.csproj", "{3E0D574A-8292-4097-BE45-F74CE34DA698}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chip8-Forms", "Ludus-Chip8-Forms\Chip8-Forms.csproj", "{3E0D574A-8292-4097-BE45-F74CE34DA698}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {219E3B4F-A1AC-45DB-8B71-BCAC2FBC0AD5}
 	EndGlobalSection
 EndGlobal

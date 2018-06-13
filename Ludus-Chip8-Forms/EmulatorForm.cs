@@ -34,7 +34,6 @@ namespace Ludus_Chip8_Forms
 
             this._bitmap = new Bitmap(gameCanvas.ClientRectangle.Width, gameCanvas.ClientRectangle.Height);
             this._graphicsDisplay = Graphics.FromImage(this._bitmap);
-            //this._graphicsDisplay.Clear(Color.Black);
 
             gameCanvas.Image = this._bitmap;
 
